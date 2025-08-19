@@ -32,7 +32,10 @@ function addQuote() {
 
   if (newText && newCategory) {
     quotes.push({ text: newText, category: newCategory });
-    alert("Quote added successfully!");
+
+    // ✅ update DOM right away
+    showRandomQuote();
+
     textInput.value = "";
     categoryInput.value = "";
   } else {
