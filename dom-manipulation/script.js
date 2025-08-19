@@ -9,31 +9,34 @@ const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const addQuoteBtn = document.getElementById("addQuoteBtn");
 
-// ✅ Function name must be displayRandomQuote
-function displayRandomQuote() {
+// Show random quote
+function showRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
-  quoteDisplay.textContent = `"${quote.text}" - ${quote.category}`;
+  quoteDisplay.innerHTML = `"${quote.text}" <br><em>- ${quote.category}</em>`;
 }
 
-// ✅ Function name must be addQuote
+// Add new quote
 function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
 
-  quotes.push({ text: textInput.value, category: categoryInput.value });
+  quotes.push({
+    text: textInput.value,
+    category: categoryInput.value
+  });
 
-  // Update DOM immediately with last added quote
+  // Update DOM with last added
   const lastQuote = quotes[quotes.length - 1];
-  quoteDisplay.textContent = `"${lastQuote.text}" - ${lastQuote.category}`;
+  quoteDisplay.innerHTML = `"${lastQuote.text}" <br><em>- ${lastQuote.category}</em>`;
 
   textInput.value = "";
   categoryInput.value = "";
 }
 
-// ✅ Event listeners
-newQuoteBtn.addEventListener("click", displayRandomQuote);
+// Event listeners
+newQuoteBtn.addEventListener("click", showRandomQuote);
 addQuoteBtn.addEventListener("click", addQuote);
 
-// ✅ Show one quote when page loads
-displayRandomQuote();
+// Show one on load
+showRandomQuote();
