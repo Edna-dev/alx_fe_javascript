@@ -27,19 +27,18 @@ function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
 
-  const newText = textInput.value.trim();
-  const newCategory = categoryInput.value.trim();
+  if (textInput.value && categoryInput.value) {
+    quotes.push({
+      text: textInput.value,
+      category: categoryInput.value
+    });
 
-  if (newText && newCategory) {
-    quotes.push({ text: newText, category: newCategory });
-
-    // ✅ update DOM right away
-    showRandomQuote();
+    // ✅ Update DOM immediately with the new quote
+    const lastQuote = quotes[quotes.length - 1];
+    quoteDisplay.innerHTML = `"${lastQuote.text}" <br><em>- ${lastQuote.category}</em>`;
 
     textInput.value = "";
     categoryInput.value = "";
-  } else {
-    alert("Please enter both quote text and category.");
   }
 }
 
